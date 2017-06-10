@@ -1,11 +1,55 @@
-<div id="app">
+<div id="app-4">
+    <table item-width="100%" align="center" border="1">
+        <tr>
+            <td width="15%" align="center">x</td>
+            <td width="15%" align="center">y</td>
+            <td width="15%" align="center">z</td>
+            <td width="15%" align="center">calculator</td>
+            <td width="10%" align="center">sum</td>
+            <td width="15%" align="center">del</td>
+        </tr>
+        <tr v-for="(todo, index) in dt">
+            <td>
+                {{ todo.x }}
+            </td>
+            <td>
+                {{ todo.y }}
+            </td>
+            <td>
+                {{ todo.z }}
+            </td>
+            <td>
+                <input type="button" value="cal" @click="calcu(todo.x, todo.y, todo.z,index)">
+            </td>
+            <td>
+                {{ todo.sum }}
+            </td>
+            <td>
+                <input type="button" value="cal" @click="deleteRow(index)">
+            </td>
+        </tr>
+
+    </table>
 </div>
 
-<script src="https://unpkg.com/vue"></script>
 
+<script src="https://unpkg.com/vue"></script>
 <script>
-    var app = new Vue({
-        el: '#app'
-    });
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            dt: [{ x: 1, y: 2, z: 3, sum: 0 }, { x: 2, y: 0, z: 0, sum: 0 }, { x: 1, y: 2, z: 5, sum: 0 }],
+        },
+        methods: {
+            calcu: function (x, y, z, index) {
+                this.dt[index].sum = x + y + z;
+
+            },
+            deleteRow: function (index) {
+                this.dt.splice(index,1)
+
+            }
+        }
+    })
 
 </script>
